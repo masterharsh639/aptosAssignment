@@ -1,0 +1,31 @@
+<div #dropdown class="multiselect">
+  <div
+    class="input relative"
+    [class.disabled]="disabled"
+    (click)="toggleDropdown()"
+  >
+    <span class="placeholder" *ngIf="!selectedItem">
+      {{ placeholder }}
+    </span>
+    <span class="selected-item" *ngIf="!!selectedItem">
+      {{ selectedItem }}
+    </span>
+    <span class="icon absolute right-2">
+      <img *ngIf="open" src="/assets/up.svg" class="dropdown-icon" />
+      <img *ngIf="!open" src="/assets/down.svg" class="dropdown-icon" />
+    </span>
+  </div>
+  <div class="dropdown-list" [hidden]="!open">
+    <div class="items">
+      <div
+        class="item"
+        *ngFor="let item of items"
+        (click)="onItemClick(item)"
+        [class.selected]="isItemAlreadySelected(item)"
+        [class.disabled]="disabled"
+      >
+        {{ item }}
+      </div>
+    </div>
+  </div>
+</div>
